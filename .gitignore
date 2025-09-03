@@ -1,7 +1,60 @@
 .env
 .venv
 .venv/
+venv
+venv/
 __pycache__
 RESOURCES
 RESOURCES/
 info.txt
+
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+.env/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+*.egg
+
+# pytest
+.pytest_cache/
+
+# VSCode
+.vscode/
+
+# Docker
+.docker/
+
+# Logs
+*.log
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Database files (if applicable)
+*.sqlite3
+*.db
+
+# Alembic migrations folder
+alembic/versions/
+
+# Environment variables
+.env
+
+# Dependency directories
+node_modules/
+
+# Alembic configuration
+alembic.ini
+
+
+commands.txt
+
+backup.sql
