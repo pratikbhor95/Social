@@ -1,0 +1,11 @@
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+backup.sql
+commands.txt
+fastapi.log
+info.txt
+RESOURCES
