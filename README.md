@@ -58,7 +58,7 @@ This is a social media application with a Python FastAPI backend and a Next.js f
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/social-media-app.git
+    git clone https://github.com/pratikbhor95/Social.git
     cd social-media-app
     ```
 
