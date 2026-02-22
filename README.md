@@ -59,7 +59,7 @@ This is a social media application with a Python FastAPI backend and a Next.js f
 
     ```bash
     git clone https://github.com/pratikbhor95/Social.git
-    cd social-media-app
+    cd Social
     ```
 
 2.  **Create a `.env` file** in the root directory and add the following environment variables:
