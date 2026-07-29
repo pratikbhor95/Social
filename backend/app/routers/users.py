@@ -30,6 +30,6 @@ def create_user(user : schemas.UserCreate , db : session = Depends(get_db)):
 def get_user(id : int, db : session = Depends(get_db)):
   user = db.query(models.User).filter(models.User.id == id).first()
   if not user:
-    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"post with id : {id} does not exist")
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"user with id : {id} does not exist")
   
   return user

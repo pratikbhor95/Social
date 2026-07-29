@@ -5,19 +5,22 @@ services:
     env_file:
       - backend/.env
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
     restart: always
 
   fastapi:
     build:
-      context: ./backend/   # folder where your Dockerfile is
+      context: ./backend/
     container_name: fastapi_app
     env_file:
       - backend/.env
     ports:
-      - "${FASTAPI_PORT}:8000"
+      - "8000:8000"
+    volumes:
+      - ./backend:/app  # Live sync for dev
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload  # Hot-reload for dev
     depends_on:
       - db
     restart: always
