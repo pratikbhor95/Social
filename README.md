@@ -45,7 +45,7 @@ This is a social media application with a Python FastAPI backend and a Next.js f
 *   **Docker:** A platform for developing, shipping, and running applications in containers.
 *   **Docker Compose:** A tool for defining and running multi-container Docker applications.
 
-### Frontend
+### Database Migrations
 
 *   **alembic initialize:** ```sudo docker exec -it -e PYTHONPATH=/app fastapi_app alembic revision --autogenerate -m "initial migration```
 *   **create migrations :** ```sudo docker exec -it -e PYTHONPATH=/app fastapi_app alembic upgrade head```
