@@ -3,7 +3,7 @@ services:
     image: postgres:15
     container_name: my_postgres
     env_file:
-      - backend/.env
+      - .env
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
@@ -15,7 +15,7 @@ services:
       context: ./backend/   # folder where your Dockerfile is
     container_name: fastapi_app
     env_file:
-      - backend/.env
+      - .env
     ports:
       - "${FASTAPI_PORT}:8000"
     depends_on:
