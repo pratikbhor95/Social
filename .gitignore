@@ -52,7 +52,7 @@ alembic/versions/
 node_modules/
 
 # Alembic configuration
-alembic.ini
+# alembic.ini
 
 
 commands.txt
