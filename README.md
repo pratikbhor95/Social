@@ -37,15 +37,19 @@ This is a social media application with a Python FastAPI backend and a Next.js f
 
 ### Frontend
 
-*   **Next.js:** A React framework for building full-stack web applications.
 *   **React:** A JavaScript library for building user interfaces.
-*   **TypeScript:** A typed superset of JavaScript that compiles to plain JavaScript.
 *   **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
 
 ### Containerization
 
 *   **Docker:** A platform for developing, shipping, and running applications in containers.
 *   **Docker Compose:** A tool for defining and running multi-container Docker applications.
+
+### Frontend
+
+*   **alembic initialize:** ```sudo docker exec -it -e PYTHONPATH=/app fastapi_app alembic revision --autogenerate -m "initial migration```
+*   **create migrations :** ```sudo docker exec -it -e PYTHONPATH=/app fastapi_app alembic upgrade head```
+
 
 ## Getting Started
 
@@ -73,6 +77,11 @@ This is a social media application with a Python FastAPI backend and a Next.js f
     SECRET_KEY=your_secret_key
     ALGORITHM=HS256
     ACCESS_TOKEN_EXPIRE_MINUTES=30
+    POSTGRES_PORT=5432
+    FASTAPI_PORT=8000
+    POSTGRES_USER=your_database_username
+    POSTGRES_PASSWORD=your_database_password
+    POSTGRES_DB=your_database_name
     ```
 
 3.  **Build and run the application using Docker Compose:**
@@ -106,7 +115,7 @@ The API documentation is available at `http://localhost:8000/docs` when the appl
 
 ## Frontend
 
-The frontend is a Next.js application located in the `frontend` directory. It interacts with the backend API to provide a user-friendly interface for the social media application.
+The frontend is a React.js application located in the `frontend` directory. It interacts with the backend API to provide a user-friendly interface for the social media application.
 
 ## Contributing
 
