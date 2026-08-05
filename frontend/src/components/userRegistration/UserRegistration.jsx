@@ -49,7 +49,7 @@ const UserRegistration = () => {
     if (validate()) {
       setIsSubmitting(true);
       try {
-        const response = await fetch('http://api.social.bhors.com/users/', {
+        const response = await fetch('https://api.social.bhors.com/users/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

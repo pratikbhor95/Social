@@ -29,7 +29,7 @@ const UserLogin = () => {
         .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key]))
         .join('&');
 
-      const response = await fetch('api.social.bhors.com/login', {
+      const response = await fetch('https://api.social.bhors.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
