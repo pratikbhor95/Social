@@ -19,23 +19,24 @@ const UserLogin = () => {
     setIsSubmitting(true);
 
     try {
-      // FastAPI OAuth2PasswordRequestForm requires 'username' and 'password' in x-www-form-urlencoded format
-      const details = {
-        username: formData.email,
-        password: formData.password
-      };
-
-      const formBody = Object.keys(details)
-        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key]))
-        .join('&');
+      // Use URLSearchParams to match Swagger UI's x-www-form-urlencoded format precisely
+      const urlEncodedData = new URLSearchParams();
+      urlEncodedData.append('username', formData.email);
+      urlEncodedData.append('password', formData.password);
 
       const response = await fetch('https://api.social.bhors.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: formBody,
+        body: urlEncodedData,
       });
+
+      // Verify if the backend actually returned JSON before trying to parse it
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server error or invalid route configuration.");
+      }
 
       const data = await response.json();
 
@@ -46,8 +47,8 @@ const UserLogin = () => {
       // Save token to localStorage to track login state
       localStorage.setItem('token', data.access_token);
 
-      // Trigger a custom storage event or state change if needed, then redirect
-      navigate('/'); // Redirect to Homepage
+      // Redirect to Homepage
+      navigate('/'); 
     } catch (error) {
       alert(error.message);
     } finally {
