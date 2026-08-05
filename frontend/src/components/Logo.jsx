@@ -22,7 +22,7 @@ const Logo = () => {
     
     <div className="flex gap-2 text-3xl sm:text-4xl lg:text-5xl p-6">
       {letters.slice(0, visibleCount).map((letter, index) => (
-        <span key={index} className="animate-fade-in text-primary">
+        <span key={index} className="animate-fade-in text-neutral-800 dark:text-neutral-200">
           {letter}
         </span>
       ))}
