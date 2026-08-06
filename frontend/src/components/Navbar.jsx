@@ -19,19 +19,21 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex sticky top-0 z-50 backdrop-blur-lg justify-between items-center bg-white/80 dark:bg-neutral-900/80 shadow-md px-4 py-2'>
-      <div className='p-2 rounded-lg'>
+    <div className='flex sticky top-0 z-50 backdrop-blur-lg justify-between items-center bg-white/80 dark:bg-neutral-900/80 shadow-md px-3 sm:px-6 py-2'>
+      {/* Logo container with overflow prevention */}
+      <div className='p-1 sm:p-2 rounded-lg max-w-[50%] overflow-hidden'>
         <Logo />
       </div>
+
+      {/* Navigation Links */}
       <div>
-        <ul className='flex items-center space-x-4'>
+        <ul className='flex items-center space-x-2 sm:space-x-4'>
           {isAuthenticated ? (
             <>
-              {/* Visible ONLY when Logged In */}
               <li>
                 <Link 
                   to="/" 
-                  className='text-gray-700 dark:text-gray-200 hover:text-blue-600 font-medium transition-colors'
+                  className='text-gray-700 dark:text-gray-200 hover:text-blue-600 font-medium transition-colors text-sm sm:text-base'
                 >
                   Home
                 </Link>
@@ -39,7 +41,7 @@ const Navbar = () => {
               <li>
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors"
+                  className="px-3 py-1.5 sm:px-4 sm:py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors text-sm sm:text-base"
                 >
                   Logout
                 </button>
@@ -47,11 +49,10 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              {/* Visible ONLY when Logged Out */}
               <li>
                 <Link
                   to="/login"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                  className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm sm:text-base whitespace-nowrap"
                 >
                   Login
                 </Link>
@@ -59,7 +60,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/register"
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                  className="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors text-sm sm:text-base whitespace-nowrap"
                 >
                   Register
                 </Link>

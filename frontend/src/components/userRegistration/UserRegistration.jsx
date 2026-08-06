@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import InputField from '../InputFeild';
+import { registerUser } from '../../services/api';
 
 const UserRegistration = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,6 @@ const UserRegistration = () => {
     password: '',
     confirmPassword: ''
   });
-
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false); // Tracks success state
@@ -49,26 +49,20 @@ const UserRegistration = () => {
     if (validate()) {
       setIsSubmitting(true);
       try {
-        const response = await fetch('https://api.social.bhors.com/users/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: formData.email,       // Matches FastAPI UserCreate schema
-            password: formData.password  // Matches FastAPI UserCreate schema
-          }),
+        // Call the centralized API function
+        await registerUser({
+          email: formData.email,
+          password: formData.password
         });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          const errorMsg = Array.isArray(data.detail) ? data.detail[0].msg : (data.detail || 'Registration failed');
-          throw new Error(errorMsg);
-        }
 
         // Success state update
         setIsRegistered(true);
+        setFormData({
+          email: '',
+          password: '',
+          confirmPassword: ''
+        });
+        setErrors({});
       } catch (error) {
         alert(error.message);
       } finally {

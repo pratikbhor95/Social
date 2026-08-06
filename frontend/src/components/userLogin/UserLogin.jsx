@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputField from '../InputFeild'; // Adjust path if necessary
+import { loginUser } from '../../services/api';
 
 const UserLogin = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -19,30 +20,7 @@ const UserLogin = () => {
     setIsSubmitting(true);
 
     try {
-      // Use URLSearchParams to match Swagger UI's x-www-form-urlencoded format precisely
-      const urlEncodedData = new URLSearchParams();
-      urlEncodedData.append('username', formData.email);
-      urlEncodedData.append('password', formData.password);
-
-      const response = await fetch('https://api.social.bhors.com/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: urlEncodedData,
-      });
-
-      // Verify if the backend actually returned JSON before trying to parse it
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Server error or invalid route configuration.");
-      }
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.detail || 'Invalid email or password');
-      }
+      const data = await loginUser(formData.email, formData.password);
 
       // Save token to localStorage to track login state
       localStorage.setItem('token', data.access_token);
@@ -77,7 +55,7 @@ const UserLogin = () => {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          placeholder="••••••••"
+          placeholder="password"
           error={errors.password}
         />
 
