@@ -47,3 +47,59 @@ export const loginUser = async (email, password) => {
 
   return data; // Returns the token data (e.g., access_token)
 };
+
+const getAuthHeader = () => {
+  const token = localStorage.getItem('token');
+  return token ? { 'Authorization': `Bearer ${token}` } : {};
+};
+
+export const getPosts = async (search = '', limit = 100, skip = 0) => {
+  const response = await fetch(`${API_BASE_URL}/posts?search=${search}&limit=${limit}&skip=${skip}`, {
+    headers: {
+      ...getAuthHeader(),
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Failed to fetch posts');
+  }
+
+  return response.json();
+};
+
+export const createPost = async (postData) => {
+  const response = await fetch(`${API_BASE_URL}/posts/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...getAuthHeader(),
+    },
+    body: JSON.stringify(postData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Failed to create post');
+  }
+
+  return response.json();
+};
+
+export const votePost = async (postId, dir) => {
+  const response = await fetch(`${API_BASE_URL}/vote/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      ...getAuthHeader(),
+    },
+    body: JSON.stringify({ post_id: postId, dir: dir }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || 'Failed to vote');
+  }
+
+  return response.json();
+};
